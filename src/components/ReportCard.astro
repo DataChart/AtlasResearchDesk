@@ -1,0 +1,168 @@
+---
+// QA report card (README §8.1): verdict badge, grade-mix bar, claim and flag counts.
+import type { Post } from '../lib/content';
+import { dayTime } from '../lib/dates';
+import { url } from '../lib/paths';
+import VerdictBadge from './VerdictBadge.astro';
+
+interface Props {
+  post: Post;
+}
+const { qa, sources, sample } = Astro.props.post.data;
+const grades = (['A', 'B', 'C', 'D'] as const).map((g) => ({ g, n: qa.sources_by_grade[g] }));
+const total = grades.reduce((s, x) => s + x.n, 0) || sources.length;
+const ab = qa.sources_by_grade.A + qa.sources_by_grade.B;
+const claims = [
+  ['verified', 'verified'],
+  ['caveat', 'with caveat'],
+  ['unverified', 'unverified'],
+  ['contradicted', 'contradicted'],
+  ['outdated', 'outdated'],
+] as const;
+const claimTotal = claims.reduce((s, [k]) => s + qa.claims[k], 0);
+const flags = [
+  ['note', 'Note'],
+  ['important', 'Important'],
+  ['warning', 'Warning'],
+  ['caution', 'Caution'],
+  ['tip', 'Tip'],
+] as const;
+---
+<section class="report-card" aria-labelledby="report-card-title">
+  <div class="rc-head">
+    <h2 id="report-card-title">QA report card</h2>
+    <VerdictBadge verdict={qa.verdict} sample={sample} />
+  </div>
+
+  <div class="rc-row">
+    <div class="rc-label">
+      Sources <b>{total}</b> · {total ? Math.round((ab / total) * 100) : 0}% graded A or B
+    </div>
+    <div class="grade-bar" role="img" aria-label={grades.map(({ g, n }) => `${n} graded ${g}`).join(', ')}>
+      {grades.filter(({ n }) => n > 0).map(({ g, n }) => (
+        <span class={`grade-seg grade-${g}`} style={`flex-grow:${n}`} title={`Grade ${g}: ${n}`}>{g} {n}</span>
+      ))}
+    </div>
+  </div>
+
+  <div class="rc-row">
+    <div class="rc-label">Claims checked <b>{claimTotal}</b></div>
+    <ul class="rc-counts">
+      {claims.map(([k, label]) => (
+        <li class={`claim-${k}`}><b>{qa.claims[k]}</b> {label}</li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="rc-row">
+    <div class="rc-label">QA callouts</div>
+    <ul class="rc-counts">
+      {flags.map(([k, label]) => (
+        <li class={`flag flag-${k}`}><b>{qa.flags[k]}</b> {label}</li>
+      ))}
+    </ul>
+  </div>
+
+  <p class="rc-foot">
+    Checked <time datetime={qa.checked_at.toISOString()}>{dayTime(qa.checked_at)}</time> by the QA agent.
+    <a href={url('/about/#qa-notation')}>How to read this</a>
+  </p>
+</section>
+
+<style>
+  .report-card {
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+    margin: 1.5rem 0 2rem;
+    max-width: var(--measure);
+    background: var(--surface);
+  }
+  .rc-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.6rem;
+  }
+  .rc-head h2 {
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .rc-row {
+    display: grid;
+    grid-template-columns: minmax(10rem, 14rem) 1fr;
+    gap: 0.25rem 1rem;
+    align-items: center;
+    padding: 0.4rem 0;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 34rem) {
+    .rc-row {
+      grid-template-columns: 1fr;
+    }
+  }
+  .rc-label {
+    color: var(--muted);
+  }
+  .rc-label b {
+    color: var(--text);
+  }
+  .grade-bar {
+    display: flex;
+    height: 1.4rem;
+    border-radius: 4px;
+    overflow: hidden;
+    gap: 2px;
+  }
+  .grade-seg {
+    background: var(--g);
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 0.72rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2rem;
+    white-space: nowrap;
+  }
+  .rc-counts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.9rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .rc-counts b {
+    font-variant-numeric: tabular-nums;
+    color: var(--claim, var(--text));
+  }
+  .flag-note b {
+    color: var(--note);
+  }
+  .flag-important b {
+    color: var(--important);
+  }
+  .flag-warning b {
+    color: var(--warning);
+  }
+  .flag-caution b {
+    color: var(--caution);
+  }
+  .flag-tip b {
+    color: var(--tip);
+  }
+  .rc-foot {
+    margin: 0.5rem 0 0;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+  }
+</style>

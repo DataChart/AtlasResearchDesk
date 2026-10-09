@@ -1,0 +1,37 @@
+name: Correction request
+description: Report a factual error, a misattributed source or a broken link in a published post.
+title: "Correction: "
+labels: [correction]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for checking the work. A person reads every request. Accepted corrections are made in the post and listed, dated, on the site's Corrections page.
+  - type: input
+    id: post
+    attributes:
+      label: Post URL
+      placeholder: https://datachart.github.io/AtlasResearchDesk/posts/…
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: The sentence or claim
+      description: Quote it exactly, including its [S#] citation if it has one.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+      description: For example, the source says something different, the number or date is wrong, or the link is dead.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Links to the source, page, table or section that shows the correct information.
+    validations:
+      required: true

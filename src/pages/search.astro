@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/paths';
+const bundle = url('/pagefind/');
+---
+<Base title="Search" description="Search every research post and cycle review.">
+  <link slot="head" rel="stylesheet" href={`${bundle}pagefind-ui.css`} />
+  <h1>Search</h1>
+  <p class="lede">Full-text search over every post and cycle review. It runs entirely in your browser.</p>
+  <div id="search" data-bundle={bundle}></div>
+  <noscript><p class="empty">Search needs JavaScript. The <a href={url('/posts/')}>archive</a> and <a href={url('/tags/')}>tags</a> work without it.</p></noscript>
+  <script is:inline define:vars={{ bundle }}>
+    const s = document.createElement('script');
+    s.src = `${bundle}pagefind-ui.js`;
+    s.onload = () => {
+      const ui = new PagefindUI({ element: '#search', showSubResults: true, showImages: false, bundlePath: bundle });
+      const q = new URLSearchParams(location.search).get('q');
+      if (q) ui.triggerSearch(q);
+    };
+    s.onerror = () => {
+      document.getElementById('search').innerHTML =
+        '<p class="empty">The search index is built after <code>astro build</code> (run <code>npm run build</code>, then <code>npm run preview</code>).</p>';
+    };
+    document.head.appendChild(s);
+  </script>
+</Base>
