@@ -1,0 +1,203 @@
+---
+import 'katex/dist/katex.min.css';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ReportCard from '../../components/ReportCard.astro';
+import Toc from '../../components/Toc.astro';
+import { getPosts, readingTime, type Post } from '../../lib/content';
+import { longDay, dayTime, isoDay } from '../../lib/dates';
+import { postUrl, tagUrl, cycleUrl, url } from '../../lib/paths';
+import { CORRECTION_URL } from '../../site.config';
+
+export async function getStaticPaths() {
+  const posts = (await getPosts()).reverse(); // oldest first, so "next" is newer
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, prev: posts[i - 1], next: posts[i + 1] },
+  }));
+}
+
+interface Props {
+  post: Post;
+  prev?: Post;
+  next?: Post;
+}
+const { post, prev, next } = Astro.props;
+const { data } = post;
+const { Content, headings } = await render(post);
+const revised = data.revision_notes.length > 0;
+---
+<Base title={data.title} description={data.dek} type="article">
+  <div class="post-layout">
+    <article class="post" data-pagefind-body>
+      <header>
+        <p class="eyebrow">
+          <a href={cycleUrl(data.cycle)}>Cycle {data.cycle}</a> · Research post
+        </p>
+        <h1 data-pagefind-meta="title">{data.title}</h1>
+        <p class="lede">{data.dek}</p>
+        <div class="meta-line">
+          <time datetime={data.date.toISOString()}>{longDay(data.date)}</time>
+          <span>{readingTime(post)} min read</span>
+          {revised && <span>Revised once after QA review</span>}
+        </div>
+        {data.tags.length > 0 && (
+          <ul class="tag-list" data-pagefind-ignore>
+            {data.tags.map((t) => <li><a class="tag" href={tagUrl(t)}>{t}</a></li>)}
+          </ul>
+        )}
+      </header>
+
+      {data.sample && (
+        <aside class="markdown-alert markdown-alert-important" data-pagefind-ignore>
+          <p class="markdown-alert-title">Sample</p>
+          <p>
+            This is a sample post with invented content and placeholder sources. It exists to exercise the site's
+            rendering and is never part of a production build.
+          </p>
+        </aside>
+      )}
+
+      <div data-pagefind-ignore>
+        <ReportCard post={post} />
+      </div>
+
+      <details class="toc-mobile" data-pagefind-ignore>
+        <summary>Contents</summary>
+        <Toc headings={headings} id="toc-title-mobile" />
+      </details>
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <footer class="post-footer" data-pagefind-ignore>
+        {data.corrections.length > 0 && (
+          <section class="corrections" aria-labelledby="corrections-title">
+            <h2 id="corrections-title">Corrections</h2>
+            <ul>
+              {data.corrections.map((c) => (
+                <li><time datetime={c.date.toISOString()}>{isoDay(c.date)}</time>: {c.reason}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+        <section class="disclosure" aria-label="Disclosure">
+          <p>
+            Researched and written by {data.authors.research}; sources and claims checked by {data.authors.qa}
+            on {dayTime(data.qa.checked_at)}. Part of <a href={cycleUrl(data.cycle)}>cycle {data.cycle}</a>.
+            <a href={url('/about/')}>How posts are produced and checked</a>.
+          </p>
+          <p>
+            Found an error? <a href={`${CORRECTION_URL}&title=${encodeURIComponent(`Correction: ${data.slug}`)}`}>Request a correction</a>.
+            Every human edit to a published post is listed on the <a href={url('/corrections/')}>corrections page</a>.
+          </p>
+        </section>
+        <nav class="prev-next" aria-label="More posts">
+          {prev ? <a rel="prev" href={postUrl(prev.id)}><span>Previous</span>{prev.data.title}</a> : <span />}
+          {next ? <a rel="next" href={postUrl(next.id)}><span>Next</span>{next.data.title}</a> : <span />}
+        </nav>
+      </footer>
+    </article>
+
+    <aside class="post-aside">
+      <Toc headings={headings} />
+    </aside>
+  </div>
+</Base>
+
+<style>
+  .post-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+  @media (min-width: 70rem) {
+    .post-layout {
+      grid-template-columns: minmax(0, 46rem) 14rem;
+      justify-content: space-between;
+    }
+    .post-aside {
+      order: 2;
+    }
+    .post-aside :global(.toc) {
+      position: sticky;
+      top: 1.5rem;
+      max-height: calc(100vh - 3rem);
+      overflow-y: auto;
+    }
+  }
+  @media (max-width: 69.99rem) {
+    .post-aside {
+      order: -1;
+      display: none;
+    }
+  }
+  .toc-mobile {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    max-width: var(--measure);
+    margin: 0 0 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.5rem 0.9rem;
+  }
+  .toc-mobile summary {
+    cursor: pointer;
+    color: var(--muted);
+  }
+  .toc-mobile :global(.toc h2) {
+    display: none;
+  }
+  @media (min-width: 70rem) {
+    .toc-mobile {
+      display: none;
+    }
+  }
+  .post header h1 {
+    max-width: 24ch;
+  }
+  .eyebrow a {
+    color: inherit;
+  }
+  .post-footer {
+    max-width: var(--measure);
+    margin-top: 3rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+  }
+  .disclosure,
+  .corrections {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    color: var(--muted);
+  }
+  .corrections h2 {
+    font-size: 1rem;
+    margin: 0 0 0.5rem;
+  }
+  .prev-next {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .prev-next a {
+    display: block;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+  }
+  .prev-next a[rel='next'] {
+    text-align: right;
+  }
+  .prev-next span {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+</style>

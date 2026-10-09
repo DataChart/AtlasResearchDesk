@@ -1,0 +1,19 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts, byWeek } from '../../lib/content';
+
+const posts = await getPosts();
+const weeks = byWeek(posts);
+---
+<Base title="Archive" description="Every published research post, grouped by week.">
+  <h1>Archive</h1>
+  <p class="lede">Every published research post, grouped by week (Monday to Sunday, Mountain Time).</p>
+  {weeks.length === 0 && <p class="empty">No posts yet.</p>}
+  {weeks.map((w) => (
+    <section aria-labelledby={w.key}>
+      <h2 id={w.key}>Week of {w.monday} <span class="muted">· {w.key}</span></h2>
+      <PostList posts={w.posts} />
+    </section>
+  ))}
+</Base>

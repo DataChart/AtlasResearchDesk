@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/paths';
+---
+<Base title="Not found" noindex>
+  <h1>Page not found</h1>
+  <p class="lede">That page doesn't exist, or a post was unpublished. Try the <a href={url('/posts/')}>archive</a> or <a href={url('/search/')}>search</a>.</p>
+</Base>

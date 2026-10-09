@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts, getReviews, cycles } from '../../lib/content';
+import { cycleUrl, postUrl } from '../../lib/paths';
+import { isoDay } from '../../lib/dates';
+
+const all = cycles(await getPosts(), await getReviews());
+---
+<Base title="Cycles" description="Each cycle is three research posts and the manager's review of them.">
+  <h1>Cycles</h1>
+  <p class="lede">
+    Every three published posts make a cycle. The manager agent then reviews them together: what connects them, what
+    the evidence supports and with what confidence, and what QA found.
+  </p>
+  {all.length === 0 && <p class="empty">No cycles yet.</p>}
+  <ul class="post-list">
+    {all.map((c) => (
+      <li>
+        <div class="meta-line">
+          <span>{c.posts.length} of 3 posts</span>
+          <span>{c.review ? `Review published ${isoDay(c.review.data.date)}` : 'Review pending'}</span>
+        </div>
+        <h3><a href={cycleUrl(c.n)}>Cycle {c.n}{c.review ? `: ${c.review.data.title}` : ''}</a></h3>
+        <ul>
+          {c.posts.map((p) => <li><a href={postUrl(p.id)}>{p.data.title}</a></li>)}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</Base>

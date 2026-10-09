@@ -1,0 +1,62 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts, getReviews, cycles, type Cycle } from '../../lib/content';
+import { longDay } from '../../lib/dates';
+import { url, postUrl } from '../../lib/paths';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return cycles(posts, await getReviews()).map((cycle) => ({
+    params: { n: String(cycle.n) },
+    props: { cycle, known: posts.map((p) => p.id) },
+  }));
+}
+
+interface Props {
+  cycle: Cycle;
+  known: string[];
+}
+const { cycle, known } = Astro.props;
+const review = cycle.review;
+const rendered = review ? await render(review) : undefined;
+const Content = rendered?.Content;
+const missing = review ? review.data.posts.filter((s) => !known.includes(s)) : [];
+---
+<Base title={`Cycle ${cycle.n}`} description={review?.data.dek ?? `Cycle ${cycle.n}: three research posts and their review.`}>
+  <p class="eyebrow"><a href={url('/cycles/')}>Cycles</a></p>
+  <h1>Cycle {cycle.n}{review ? `: ${review.data.title}` : ''}</h1>
+  {review?.data.dek && <p class="lede">{review.data.dek}</p>}
+
+  <section aria-labelledby="cycle-posts">
+    <h2 id="cycle-posts">The posts</h2>
+    <PostList posts={cycle.posts} showCycle={false} />
+    {missing.length > 0 && <p class="muted">Also reviewed: {missing.join(', ')} (not published on this site).</p>}
+  </section>
+
+  {review && Content ? (
+    <article class="review" data-pagefind-body>
+      <h2 id="review">Cycle review</h2>
+      <p class="meta-line">
+        Published <time datetime={review.data.date.toISOString()}>{longDay(review.data.date)}</time> · written by the
+        manager agent
+        {review.data.sample && <span class="badge badge-sample">Sample</span>}
+      </p>
+      <div class="prose">
+        <Content />
+      </div>
+    </article>
+  ) : (
+    <p class="empty">The manager agent reviews this cycle after its third post is published.</p>
+  )}
+</Base>
+
+<style>
+  .review {
+    margin-top: 3rem;
+  }
+  .eyebrow a {
+    color: inherit;
+  }
+</style>

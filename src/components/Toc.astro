@@ -1,0 +1,53 @@
+---
+import type { MarkdownHeading } from 'astro';
+interface Props {
+  headings: MarkdownHeading[];
+  id?: string;
+}
+const { id = 'toc-title' } = Astro.props;
+// footnote-label is GFM's screen-reader heading for the QA notes; the visible one is listed already.
+const items = Astro.props.headings.filter((h) => (h.depth === 2 || h.depth === 3) && h.slug !== 'footnote-label');
+---
+{items.length > 2 && (
+  <nav class="toc" aria-labelledby={id}>
+    <h2 id={id}>Contents</h2>
+    <ol>
+      {items.map((h) => (
+        <li class={`toc-d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
+      ))}
+    </ol>
+  </nav>
+)}
+
+<style>
+  .toc {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+  }
+  .toc h2 {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.5rem;
+  }
+  .toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .toc li {
+    margin: 0.3rem 0;
+  }
+  .toc-d3 {
+    padding-left: 0.9rem;
+  }
+  .toc a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .toc a:hover {
+    color: var(--text);
+    text-decoration: underline;
+  }
+</style>

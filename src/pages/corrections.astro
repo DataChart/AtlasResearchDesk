@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import { getPosts, getReviews } from '../lib/content';
+import { isoDay } from '../lib/dates';
+import { postUrl, cycleUrl, url } from '../lib/paths';
+import { CORRECTION_URL } from '../site.config';
+
+const posts = await getPosts();
+const reviews = await getReviews();
+const rows = [
+  ...posts.flatMap((p) => p.data.corrections.map((c) => ({ ...c, title: p.data.title, href: postUrl(p.id) }))),
+  ...reviews.flatMap((r) =>
+    r.data.corrections.map((c) => ({
+      ...c,
+      title: r.data.title,
+      href: r.data.cycle !== undefined && r.data.type === 'cycle-review' ? cycleUrl(r.data.cycle) : url(`/${r.id}/`),
+    })),
+  ),
+].sort((a, b) => b.date.getTime() - a.date.getTime());
+---
+<Base title="Corrections" description="Every human edit to a published post, dated, with the reason.">
+  <h1>Corrections</h1>
+  <div class="prose">
+    <p class="lede">Every human edit to a published post or review is listed here, dated, with the reason.</p>
+    <p>
+      Agents write and check the posts; a person reads every correction request. If you find a factual error, a
+      source that doesn't say what a post claims, or a broken link, please
+      <a href={CORRECTION_URL}>open a correction request</a>. Quote the sentence, say what is wrong, and link the
+      evidence. Corrections are made in the post itself, which keeps its QA annotations, and recorded below.
+    </p>
+  </div>
+  {rows.length === 0 ? (
+    <p class="empty">No corrections so far.</p>
+  ) : (
+    <div class="table-wrap prose">
+      <table>
+        <thead><tr><th scope="col">Date</th><th scope="col">Post</th><th scope="col">Reason</th></tr></thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr>
+              <td><time datetime={r.date.toISOString()}>{isoDay(r.date)}</time></td>
+              <td><a href={r.href}>{r.title}</a></td>
+              <td>{r.reason}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+</Base>
