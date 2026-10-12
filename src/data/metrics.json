@@ -1,7 +1,61 @@
 {
   "version": 1,
-  "generated_at": null,
-  "output": {},
-  "qa": {},
-  "sources": {}
+  "generated_at": "2026-10-12T04:21:53Z",
+  "pipeline": {
+    "runs_logged": 0,
+    "runs_completed": 0,
+    "runs_skipped": 0,
+    "runs_failed": 0,
+    "clean_run_rate": null
+  },
+  "output": {
+    "research_posts": 0,
+    "cycle_reviews": 0,
+    "words_published": 0,
+    "posts_per_tag": {}
+  },
+  "qa": {
+    "verdicts": {
+      "pass": 0,
+      "pass-with-notes": 0,
+      "revise": 0,
+      "reject": 0
+    },
+    "revision_rate": null,
+    "rejection_rate": null,
+    "pass_rate": null,
+    "claims_checked": 0,
+    "claims_by_status": {
+      "verified": 0,
+      "caveat": 0,
+      "unverified": 0,
+      "contradicted": 0,
+      "outdated": 0
+    },
+    "flags_by_type": {
+      "note": 0,
+      "important": 0,
+      "warning": 0,
+      "caution": 0,
+      "tip": 0
+    },
+    "flags_per_1000_words": null
+  },
+  "sources": {
+    "sources_checked": 0,
+    "unique_domains": 0,
+    "grade_mix": {
+      "A": 0,
+      "B": 0,
+      "C": 0,
+      "D": 0
+    },
+    "ab_share": null,
+    "sources_per_post_mean": null,
+    "unresolvable_rate_at_qa": null,
+    "link_rot_end_of_month": null
+  },
+  "trends": {
+    "qa_flags_by_week": {}
+  }
 }
