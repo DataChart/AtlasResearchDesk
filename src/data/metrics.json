@@ -1,61 +1,73 @@
 {
   "version": 1,
-  "generated_at": "2026-10-13T15:19:23Z",
+  "generated_at": "2026-10-13T20:19:52Z",
   "pipeline": {
-    "runs_logged": 5,
-    "runs_completed": 5,
+    "runs_logged": 6,
+    "runs_completed": 6,
     "runs_skipped": 0,
     "runs_failed": 0,
     "clean_run_rate": 1.0
   },
   "output": {
-    "research_posts": 0,
+    "research_posts": 1,
     "cycle_reviews": 0,
-    "words_published": 0,
-    "posts_per_tag": {}
+    "words_published": 2586,
+    "posts_per_tag": {
+      "agent-safety": 1,
+      "alignment": 1,
+      "cybersecurity": 1,
+      "evaluation": 1
+    }
   },
   "qa": {
     "verdicts": {
       "pass": 0,
-      "pass-with-notes": 0,
+      "pass-with-notes": 1,
       "revise": 1,
       "reject": 1
     },
-    "revision_rate": 1.0,
-    "rejection_rate": 1.0,
-    "pass_rate": 0.0,
-    "claims_checked": 0,
+    "revision_rate": 0.5,
+    "rejection_rate": 0.5,
+    "pass_rate": 0.5,
+    "claims_checked": 42,
     "claims_by_status": {
-      "verified": 0,
-      "caveat": 0,
-      "unverified": 0,
-      "contradicted": 0,
+      "verified": 25,
+      "caveat": 14,
+      "unverified": 1,
+      "contradicted": 2,
       "outdated": 0
     },
     "flags_by_type": {
-      "note": 0,
+      "note": 2,
       "important": 0,
-      "warning": 0,
-      "caution": 0,
-      "tip": 0
+      "warning": 1,
+      "caution": 3,
+      "tip": 1
     },
-    "flags_per_1000_words": null
+    "flags_per_1000_words": 2.71
   },
   "sources": {
-    "sources_checked": 17,
-    "unique_domains": 7,
+    "sources_checked": 25,
+    "unique_domains": 11,
     "grade_mix": {
-      "A": 0,
-      "B": 0,
+      "A": 1,
+      "B": 7,
       "C": 0,
       "D": 0
     },
-    "ab_share": null,
-    "sources_per_post_mean": null,
+    "ab_share": 1.0,
+    "sources_per_post_mean": 8.0,
     "unresolvable_rate_at_qa": 0.0,
     "link_rot_end_of_month": null
   },
   "trends": {
-    "qa_flags_by_week": {}
+    "qa_flags_by_week": {
+      "2026-W42": {
+        "posts": 1,
+        "flags": 7,
+        "words": 2586,
+        "flags_per_1000_words": 2.71
+      }
+    }
   }
 }
