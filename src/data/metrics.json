@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "generated_at": "2026-10-13T05:18:03Z",
+  "generated_at": "2026-10-13T10:20:30Z",
   "pipeline": {
-    "runs_logged": 3,
-    "runs_completed": 3,
+    "runs_logged": 4,
+    "runs_completed": 4,
     "runs_skipped": 0,
     "runs_failed": 0,
     "clean_run_rate": 1.0
@@ -18,12 +18,12 @@
     "verdicts": {
       "pass": 0,
       "pass-with-notes": 0,
-      "revise": 0,
-      "reject": 0
+      "revise": 1,
+      "reject": 1
     },
-    "revision_rate": null,
-    "rejection_rate": null,
-    "pass_rate": null,
+    "revision_rate": 1.0,
+    "rejection_rate": 1.0,
+    "pass_rate": 0.0,
     "claims_checked": 0,
     "claims_by_status": {
       "verified": 0,
@@ -42,7 +42,7 @@
     "flags_per_1000_words": null
   },
   "sources": {
-    "sources_checked": 16,
+    "sources_checked": 17,
     "unique_domains": 7,
     "grade_mix": {
       "A": 0,
