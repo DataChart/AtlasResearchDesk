@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generated_at": "2026-10-12T04:21:53Z",
+  "generated_at": "2026-10-13T02:55:01Z",
   "pipeline": {
-    "runs_logged": 0,
-    "runs_completed": 0,
+    "runs_logged": 1,
+    "runs_completed": 1,
     "runs_skipped": 0,
     "runs_failed": 0,
-    "clean_run_rate": null
+    "clean_run_rate": 1.0
   },
   "output": {
     "research_posts": 0,
@@ -42,8 +42,8 @@
     "flags_per_1000_words": null
   },
   "sources": {
-    "sources_checked": 0,
-    "unique_domains": 0,
+    "sources_checked": 16,
+    "unique_domains": 7,
     "grade_mix": {
       "A": 0,
       "B": 0,
@@ -52,7 +52,7 @@
     },
     "ab_share": null,
     "sources_per_post_mean": null,
-    "unresolvable_rate_at_qa": null,
+    "unresolvable_rate_at_qa": 0.0,
     "link_rot_end_of_month": null
   },
   "trends": {
