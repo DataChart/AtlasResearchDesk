@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "generated_at": "2026-10-14T00:22:28Z",
+  "generated_at": "2026-10-14T10:23:35Z",
   "pipeline": {
-    "runs_logged": 7,
-    "runs_completed": 7,
+    "runs_logged": 8,
+    "runs_completed": 8,
     "runs_skipped": 0,
     "runs_failed": 0,
     "clean_run_rate": 1.0
@@ -47,8 +47,8 @@
     "flags_per_1000_words": 2.71
   },
   "sources": {
-    "sources_checked": 25,
-    "unique_domains": 11,
+    "sources_checked": 40,
+    "unique_domains": 16,
     "grade_mix": {
       "A": 1,
       "B": 7,
