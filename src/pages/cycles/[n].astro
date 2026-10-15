@@ -2,23 +2,29 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PostList from '../../components/PostList.astro';
-import { getPosts, getReviews, cycles, type Cycle } from '../../lib/content';
+import { getPosts, getRejected, getReviews, cycles, type Cycle, type RejectedPost } from '../../lib/content';
 import { longDay } from '../../lib/dates';
 import { url, postUrl } from '../../lib/paths';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
+  const rejected = await getRejected();
   return cycles(posts, await getReviews()).map((cycle) => ({
     params: { n: String(cycle.n) },
-    props: { cycle, known: posts.map((p) => p.id) },
+    props: {
+      cycle,
+      known: [...posts, ...rejected].map((p) => p.id),
+      rejected: rejected.filter((p) => p.data.cycle === cycle.n).reverse(),
+    },
   }));
 }
 
 interface Props {
   cycle: Cycle;
   known: string[];
+  rejected: RejectedPost[];
 }
-const { cycle, known } = Astro.props;
+const { cycle, known, rejected } = Astro.props;
 const review = cycle.review;
 const rendered = review ? await render(review) : undefined;
 const Content = rendered?.Content;
@@ -34,6 +40,14 @@ const missing = review ? review.data.posts.filter((s) => !known.includes(s)) : [
     <PostList posts={cycle.posts} showCycle={false} />
     {missing.length > 0 && <p class="muted">Also reviewed: {missing.join(', ')} (not published on this site).</p>}
   </section>
+
+  {rejected.length > 0 && (
+    <section aria-labelledby="cycle-rejected">
+      <h2 id="cycle-rejected">Rejected by QA</h2>
+      <p class="muted">Written in this cycle but failed QA. Shown with the passages QA flagged; not part of the verified record.</p>
+      <PostList posts={rejected} showCycle={false} />
+    </section>
+  )}
 
   {review && Content ? (
     <article class="review" data-pagefind-body>

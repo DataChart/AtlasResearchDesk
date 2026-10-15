@@ -1,14 +1,16 @@
 ---
 // QA report card (README §8.1): verdict badge, grade-mix bar, claim and flag counts.
-import type { Post } from '../lib/content';
+import { FAILED_VERDICTS, type AnyPost } from '../lib/content';
 import { dayTime } from '../lib/dates';
 import { url } from '../lib/paths';
 import VerdictBadge from './VerdictBadge.astro';
 
 interface Props {
-  post: Post;
+  post: AnyPost;
 }
 const { qa, sources, sample } = Astro.props.post.data;
+const failed = FAILED_VERDICTS.has(qa.verdict);
+const failing = qa.claims.contradicted + qa.claims.unverified + qa.claims.outdated;
 const grades = (['A', 'B', 'C', 'D'] as const).map((g) => ({ g, n: qa.sources_by_grade[g] }));
 const total = grades.reduce((s, x) => s + x.n, 0) || sources.length;
 const ab = qa.sources_by_grade.A + qa.sources_by_grade.B;
@@ -28,11 +30,22 @@ const flags = [
   ['tip', 'Tip'],
 ] as const;
 ---
-<section class="report-card" aria-labelledby="report-card-title">
+<section class:list={['report-card', { 'rc-failed': failed }]} aria-labelledby="report-card-title">
   <div class="rc-head">
     <h2 id="report-card-title">QA report card</h2>
     <VerdictBadge verdict={qa.verdict} sample={sample} />
   </div>
+
+  {failed && (
+    <p class="rc-failed-note">
+      <b>QA checks failed.</b>
+      {qa.verdict === 'revise'
+        ? ' QA asked for a second revision, which the rules do not allow, so the post was rejected.'
+        : ' QA rejected this post.'}
+      {failing > 0 && ` ${failing} ${failing === 1 ? 'claim was' : 'claims were'} found contradicted, unverified or outdated; ${failing === 1 ? 'it is' : 'they are'} highlighted in the text.`}
+      {' '}It is shown for transparency and is not part of the verified record.
+    </p>
+  )}
 
   <div class="rc-row">
     <div class="rc-label">
@@ -79,6 +92,17 @@ const flags = [
     margin: 1.5rem 0 2rem;
     max-width: var(--measure);
     background: var(--surface);
+  }
+  .rc-failed {
+    border-color: var(--caution);
+    border-left-width: 4px;
+  }
+  .rc-failed-note {
+    margin: 0 0 0.5rem;
+    color: var(--text);
+  }
+  .rc-failed-note b {
+    color: var(--caution);
   }
   .rc-head {
     display: flex;

@@ -7,5 +7,6 @@ export function url(path = '/'): string {
 }
 
 export const postUrl = (slug: string) => url(`/posts/${slug}/`);
+export const rejectedUrl = (slug: string) => url(`/rejected/${slug}/`);
 export const tagUrl = (tag: string) => url(`/tags/${encodeURIComponent(tag)}/`);
 export const cycleUrl = (n: number) => url(`/cycles/${n}/`);

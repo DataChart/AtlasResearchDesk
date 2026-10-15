@@ -1,26 +1,41 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PostList from '../../components/PostList.astro';
-import { getPosts, tagCounts, type Post } from '../../lib/content';
+import { getPosts, getRejected, tagCounts, type Post, type RejectedPost } from '../../lib/content';
 import { url } from '../../lib/paths';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
-  return tagCounts(posts).map(([tag]) => ({
+  const rejected = await getRejected();
+  return tagCounts([...posts, ...rejected]).map(([tag]) => ({
     params: { tag },
-    props: { tag, posts: posts.filter((p) => p.data.tags.includes(tag)) },
+    props: {
+      tag,
+      posts: posts.filter((p) => p.data.tags.includes(tag)),
+      rejected: rejected.filter((p) => p.data.tags.includes(tag)),
+    },
   }));
 }
 
 interface Props {
   tag: string;
   posts: Post[];
+  rejected: RejectedPost[];
 }
-const { tag, posts } = Astro.props;
+const { tag, posts, rejected } = Astro.props;
 ---
 <Base title={`Tagged “${tag}”`} description={`Research posts tagged ${tag}.`}>
   <p class="eyebrow"><a href={url('/tags/')}>Tags</a></p>
   <h1>{tag}</h1>
-  <p class="lede">{posts.length} post{posts.length === 1 ? '' : 's'}</p>
-  <PostList posts={posts} />
+  <p class="lede">
+    {posts.length} post{posts.length === 1 ? '' : 's'}{rejected.length > 0 && `, plus ${rejected.length} rejected by QA`}
+  </p>
+  {posts.length > 0 && <PostList posts={posts} />}
+  {rejected.length > 0 && (
+    <section aria-labelledby="tag-rejected">
+      <h2 id="tag-rejected">Rejected by QA</h2>
+      <p class="muted">These posts failed QA. They are shown with the passages QA flagged. <a href={url('/rejected/')}>About rejected posts</a>.</p>
+      <PostList posts={rejected} />
+    </section>
+  )}
 </Base>
