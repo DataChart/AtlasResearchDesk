@@ -1,9 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getPosts, tagCounts } from '../../lib/content';
+import { getPosts, getRejected, tagCounts } from '../../lib/content';
 import { tagUrl } from '../../lib/paths';
 
-const tags = tagCounts(await getPosts());
+const tags = tagCounts([...(await getPosts()), ...(await getRejected())]);
 ---
 <Base title="Tags" description="Research posts by topic.">
   <h1>Tags</h1>

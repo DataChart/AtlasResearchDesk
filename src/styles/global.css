@@ -656,3 +656,68 @@ a.tag:hover {
     display: none;
   }
 }
+
+/* Posts QA rejected: failed badge, highlighted claims, "What QA flagged" list */
+.badge-failed {
+  color: var(--caution);
+}
+mark.qa-flag {
+  --flag: var(--caution);
+  color: inherit;
+  background: color-mix(in srgb, var(--flag) 14%, transparent);
+  border-bottom: 2px solid var(--flag);
+  padding: 0 0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  scroll-margin-top: 2rem;
+}
+mark.qa-flag-unverified {
+  --flag: var(--warning);
+}
+mark.qa-flag-outdated {
+  --flag: var(--important);
+}
+mark.qa-flag:target,
+.qa-flag-callout:target {
+  outline: 2px solid var(--flag, var(--alert, var(--caution)));
+  outline-offset: 3px;
+}
+.qa-flag-callout {
+  scroll-margin-top: 2rem;
+}
+.qa-flagged {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  max-width: var(--measure);
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--caution);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+}
+.qa-flagged-title {
+  margin: 0;
+  font-weight: 700;
+  color: var(--caution);
+}
+.qa-flagged-counts {
+  margin: 0.25rem 0 0.5rem;
+  color: var(--muted);
+}
+.qa-flagged ol {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+.qa-flagged li + li {
+  margin-top: 0.35rem;
+}
+.qa-flagged-status {
+  font-weight: 700;
+  color: var(--claim, var(--caution));
+}
+.qa-flagged-status.flag-caution {
+  color: var(--caution);
+}
+.qa-flagged-status.flag-warning {
+  color: var(--warning);
+}

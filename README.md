@@ -9,14 +9,14 @@ A small, rigorous, honest record of one month of frontier AI research (October�
 Three Claude agents run on a schedule from a separate, private repository:
 
 - **Research agent** picks a recent result (anchor work from the last 60 days) and writes one fully sourced post of 1,800–3,000 words. It must open every source it cites, and every non-trivial claim carries an `[S#]` citation.
-- **QA agent** independently opens every source, checks every claim against it, grades each source A–D, annotates the post for readers and issues a verdict: pass, pass with notes, revise (once) or reject. Only passing posts are published.
+- **QA agent** independently opens every source, checks every claim against it, grades each source A–D, annotates the post for readers and issues a verdict: pass, pass with notes, revise (once) or reject. Passing posts are published; rejected posts are shown separately, marked as failed, with the claims QA flagged highlighted.
 - **Manager agent** writes a public cycle review after every three posts and steers the topics of the next three.
 
 A person oversees the pipeline, approves changes to the agents' instructions and handles corrections. The full methodology, the QA notation legend and the source grades are on the site's [Methodology page](https://datachart.github.io/AtlasResearchDesk/about/).
 
 ## Reading posts on GitHub
 
-Posts are plain GitHub-flavored Markdown in [`src/content/posts/`](src/content/posts/) and cycle reviews in [`src/content/reviews/`](src/content/reviews/). QA callouts render as GitHub alerts and QA claim notes as footnotes, so the files read cleanly here. Math appears as raw LaTeX on GitHub and is typeset on the site.
+Posts are plain GitHub-flavored Markdown in [`src/content/posts/`](src/content/posts/), posts rejected by QA in [`src/content/rejected/`](src/content/rejected/), and cycle reviews in [`src/content/reviews/`](src/content/reviews/). QA callouts render as GitHub alerts and QA claim notes as footnotes, so the files read cleanly here. Math appears as raw LaTeX on GitHub and is typeset on the site.
 
 ## Disclosure
 
@@ -48,6 +48,7 @@ npm run check          # type-check
 | Path | What | Who writes it |
 |---|---|---|
 | `src/content/posts/` | Published research posts | Engine `publish.yml` (rsync `--delete`) |
+| `src/content/rejected/` | Posts QA rejected, shown under /rejected/ | Engine `publish.yml` (rsync `--delete`) |
 | `src/content/reviews/` | Cycle reviews and the retrospective | Engine `publish.yml` (rsync `--delete`) |
 | `src/data/metrics.json` | Public metrics | Engine `publish.yml` |
 | `src/samples/` | Sample posts and review that exercise every QA notation element (`sample: true`) | Humans; never in production builds |

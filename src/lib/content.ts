@@ -3,7 +3,12 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { isoWeek } from './dates';
 
 export type Post = CollectionEntry<'posts'>;
+export type RejectedPost = CollectionEntry<'rejected'>;
+/** A research post that passed QA (`posts`) or failed it (`rejected`). */
+export type AnyPost = Post | RejectedPost;
 export type Review = CollectionEntry<'reviews'>;
+
+export const isRejected = (p: AnyPost): p is RejectedPost => p.collection === 'rejected';
 
 // Belt and braces: a post marked `sample: true` never ships in a production build,
 // even if one lands in src/content/ by mistake.
@@ -13,6 +18,11 @@ const newestFirst = <T extends { data: { date: Date } }>(a: T, b: T) => b.data.d
 
 export async function getPosts(): Promise<Post[]> {
   return (await getCollection('posts', visible)).sort(newestFirst);
+}
+
+/** Posts QA rejected: shown in their own section, never in the feed of verified posts. */
+export async function getRejected(): Promise<RejectedPost[]> {
+  return (await getCollection('rejected', visible)).sort(newestFirst);
 }
 
 export async function getReviews(): Promise<Review[]> {
@@ -28,11 +38,11 @@ export function wordCount(markdown = ''): number {
   return (prose.match(/[A-Za-z0-9][A-Za-z0-9'’-]*/g) ?? []).length;
 }
 
-export function readingTime(post: Post): number {
+export function readingTime(post: AnyPost): number {
   return post.data.reading_time_min ?? Math.max(1, Math.round(wordCount(post.body) / 230));
 }
 
-export function tagCounts(posts: Post[]): [string, number][] {
+export function tagCounts(posts: AnyPost[]): [string, number][] {
   const counts = new Map<string, number>();
   for (const p of posts) for (const t of p.data.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
   return [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
@@ -66,4 +76,8 @@ export function byWeek(posts: Post[]): { key: string; monday: string; sunday: st
 export const VERDICT_LABEL: Record<string, string> = {
   pass: 'Pass',
   'pass-with-notes': 'Pass with notes',
+  reject: 'Failed · rejected',
+  revise: 'Failed · rejected after revision',
 };
+
+export const FAILED_VERDICTS = new Set(['reject', 'revise']);

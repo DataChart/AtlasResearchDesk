@@ -48,34 +48,39 @@ const correction = z.object({
   reason: z.string().min(1),
 });
 
-const qa = z.object({
-  verdict: z.enum(['pass', 'pass-with-notes']),
-  checked_at: z.coerce.date(),
-  sources_by_grade: z.object({ A: count, B: count, C: count, D: count }),
-  claims: z.object({ verified: count, caveat: count, unverified: count, contradicted: count, outdated: count }),
-  flags: z.object({ note: count, important: count, warning: count, caution: count, tip: count }),
-});
+const qa = <V extends [string, ...string[]]>(verdicts: V) =>
+  z.object({
+    verdict: z.enum(verdicts),
+    checked_at: z.coerce.date(),
+    sources_by_grade: z.object({ A: count, B: count, C: count, D: count }),
+    claims: z.object({ verified: count, caveat: count, unverified: count, contradicted: count, outdated: count }),
+    flags: z.object({ note: count, important: count, warning: count, caution: count, tip: count }),
+  });
 
-const posts = defineCollection({
-  loader: glob({
+const postLoader = (dir: string) =>
+  glob({
     base: './src',
-    pattern: includeSamples ? ['content/posts/**/*.md', 'samples/posts/**/*.md'] : 'content/posts/**/*.md',
+    pattern: includeSamples ? [`content/${dir}/**/*.md`, `samples/${dir}/**/*.md`] : `content/${dir}/**/*.md`,
     generateId: ({ data, entry }) => String(data.slug ?? entry.replace(/\.md$/, '').split('/').pop()),
-  }),
-  schema: z
+  });
+
+// Published posts passed QA. Rejected posts failed it (a reject verdict, or a second
+// revise) and are shown in their own section, labelled as failed, with QA's annotations.
+const postSchema = <S extends string, V extends [string, ...string[]]>(status: S, verdicts: V) =>
+  z
     .looseObject({
       title: z.string().min(1),
       slug: z.string().regex(/^\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*$/),
       dek: z.string().min(1),
       date: z.coerce.date(),
       type: z.literal('research'),
-      status: z.literal('published'),
+      status: z.literal(status),
       cycle: z.number().int().nonnegative(),
       tags: z.array(z.string()).default([]),
       reading_time_min: z.number().positive().optional(),
       anchor_source: z.string().regex(/^S\d+$/),
       authors: z.object({ research: z.string(), qa: z.string() }),
-      qa,
+      qa: qa(verdicts),
       sources: z.array(source).min(1),
       revision_notes: z.array(z.unknown()).default([]),
       corrections: z.array(correction).default([]),
@@ -90,7 +95,16 @@ const posts = defineCollection({
       if (new Set(ids).size !== ids.length) {
         ctx.addIssue({ code: 'custom', path: ['sources'], message: 'duplicate source ids' });
       }
-    }),
+    });
+
+const posts = defineCollection({
+  loader: postLoader('posts'),
+  schema: postSchema('published', ['pass', 'pass-with-notes']),
+});
+
+const rejected = defineCollection({
+  loader: postLoader('rejected'),
+  schema: postSchema('rejected', ['reject', 'revise']),
 });
 
 const reviews = defineCollection({
@@ -121,4 +135,4 @@ const reviews = defineCollection({
     }),
 });
 
-export const collections = { posts, reviews };
+export const collections = { posts, rejected, reviews };

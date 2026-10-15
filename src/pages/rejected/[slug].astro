@@ -1,0 +1,19 @@
+---
+import PostArticle from '../../components/PostArticle.astro';
+import { getRejected, type RejectedPost } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const posts = (await getRejected()).reverse(); // oldest first, so "next" is newer
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, prev: posts[i - 1], next: posts[i + 1] },
+  }));
+}
+
+interface Props {
+  post: RejectedPost;
+  prev?: RejectedPost;
+  next?: RejectedPost;
+}
+---
+<PostArticle {...Astro.props} />

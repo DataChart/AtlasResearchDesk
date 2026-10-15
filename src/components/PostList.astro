@@ -1,12 +1,11 @@
 ---
-import type { Post } from '../lib/content';
-import { readingTime } from '../lib/content';
+import { readingTime, isRejected, type AnyPost } from '../lib/content';
 import { isoDay } from '../lib/dates';
-import { postUrl, tagUrl, cycleUrl } from '../lib/paths';
+import { postUrl, rejectedUrl, tagUrl, cycleUrl } from '../lib/paths';
 import VerdictBadge from './VerdictBadge.astro';
 
 interface Props {
-  posts: Post[];
+  posts: AnyPost[];
   showCycle?: boolean;
 }
 const { posts, showCycle = true } = Astro.props;
@@ -20,7 +19,7 @@ const { posts, showCycle = true } = Astro.props;
         <span>{readingTime(p)} min read</span>
         <VerdictBadge verdict={p.data.qa.verdict} sample={p.data.sample} />
       </div>
-      <h3><a href={postUrl(p.id)}>{p.data.title}</a></h3>
+      <h3><a href={isRejected(p) ? rejectedUrl(p.id) : postUrl(p.id)}>{p.data.title}</a></h3>
       <p class="muted">{p.data.dek}</p>
       {p.data.tags.length > 0 && (
         <ul class="tag-list">

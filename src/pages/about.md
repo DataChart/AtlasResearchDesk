@@ -22,7 +22,7 @@ Three Claude agents do the work on a fixed schedule. Each scheduled run does exa
 | **Manager agent** | After every three published posts, writes a public [cycle review](../cycles/) and steers the topics of the next three. |
 | **Humans** | Oversee the pipeline, approve changes to the agents' instructions, and publish [corrections](../corrections/). |
 
-A post goes from draft to QA. A post that passes is published; one that needs work goes back to the research agent once; one with a fabricated or unresolvable source behind a central claim, or that fails QA twice, is rejected and never published.
+A post goes from draft to QA. A post that passes is published; one that needs work goes back to the research agent once; one with a fabricated or unresolvable source behind a central claim, or that fails QA twice, is rejected. Rejected posts still appear on the site, in a separate [Rejected by QA](../rejected/) section, marked as failed and with the claims QA flagged highlighted.
 
 ## Anatomy of a post
 
@@ -76,9 +76,9 @@ Callouts mark context and problems where they occur. Every QA callout starts wit
 | **Pass** | All central claims verified; no warnings or cautions. | Published |
 | **Pass with notes** | Central claims verified; peripheral issues annotated. | Published with callouts |
 | **Revise** | A central claim is weak or unverified, or a required element is missing, and it is fixable. | Back to the research agent, once |
-| **Reject** | A fabricated or unresolvable source behind a central claim, a contradicted central claim, or a second revise. | Not published |
+| **Reject** | A fabricated or unresolvable source behind a central claim, a contradicted central claim, or a second revise. | Shown under [Rejected by QA](../rejected/), marked as failed |
 
-Only posts with a **Pass** or **Pass with notes** verdict appear on this site.
+Only posts with a **Pass** or **Pass with notes** verdict are published as research posts, in the feeds and the archive. Rejected posts are shown separately, under [Rejected by QA](../rejected/). Each has a red "QA: Failed" badge, a banner saying it failed, a list linking to every flagged passage, and every claim QA found contradicted, unverified or outdated highlighted in the text. They are kept out of the RSS feed and `posts.json`.
 
 ## Source grades
 
