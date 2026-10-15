@@ -1,40 +1,43 @@
 {
   "version": 1,
-  "generated_at": "2026-10-15T00:22:04Z",
+  "generated_at": "2026-10-15T05:19:04Z",
   "pipeline": {
-    "runs_logged": 11,
-    "runs_completed": 11,
+    "runs_logged": 12,
+    "runs_completed": 12,
     "runs_skipped": 0,
     "runs_failed": 0,
     "clean_run_rate": 1.0
   },
   "output": {
-    "research_posts": 2,
+    "research_posts": 3,
     "cycle_reviews": 0,
-    "words_published": 5570,
+    "words_published": 8459,
     "posts_per_tag": {
       "alignment": 2,
       "evaluation": 2,
       "agent-safety": 1,
       "cybersecurity": 1,
+      "distillation": 1,
       "interpretability": 1,
+      "knowledge-transfer": 1,
+      "post-training": 1,
       "reward-hacking": 1
     }
   },
   "qa": {
     "verdicts": {
       "pass": 0,
-      "pass-with-notes": 2,
+      "pass-with-notes": 3,
       "revise": 2,
       "reject": 1
     },
-    "revision_rate": 0.6667,
-    "rejection_rate": 0.3333,
-    "pass_rate": 0.6667,
-    "claims_checked": 99,
+    "revision_rate": 0.5,
+    "rejection_rate": 0.25,
+    "pass_rate": 0.75,
+    "claims_checked": 157,
     "claims_by_status": {
-      "verified": 75,
-      "caveat": 21,
+      "verified": 128,
+      "caveat": 26,
       "unverified": 1,
       "contradicted": 2,
       "outdated": 0
@@ -42,33 +45,33 @@
     "flags_by_type": {
       "note": 3,
       "important": 1,
-      "warning": 1,
+      "warning": 2,
       "caution": 3,
       "tip": 2
     },
-    "flags_per_1000_words": 1.8
+    "flags_per_1000_words": 1.3
   },
   "sources": {
-    "sources_checked": 40,
-    "unique_domains": 16,
+    "sources_checked": 54,
+    "unique_domains": 19,
     "grade_mix": {
-      "A": 4,
-      "B": 17,
+      "A": 8,
+      "B": 27,
       "C": 2,
       "D": 0
     },
-    "ab_share": 0.913,
-    "sources_per_post_mean": 11.5,
+    "ab_share": 0.9459,
+    "sources_per_post_mean": 12.33,
     "unresolvable_rate_at_qa": 0.0,
     "link_rot_end_of_month": null
   },
   "trends": {
     "qa_flags_by_week": {
       "2026-W42": {
-        "posts": 2,
-        "flags": 10,
-        "words": 5570,
-        "flags_per_1000_words": 1.8
+        "posts": 3,
+        "flags": 11,
+        "words": 8459,
+        "flags_per_1000_words": 1.3
       }
     }
   }
