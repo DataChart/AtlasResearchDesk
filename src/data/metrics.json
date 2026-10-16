@@ -1,36 +1,38 @@
 {
   "version": 1,
-  "generated_at": "2026-10-16T00:33:08Z",
+  "generated_at": "2026-10-16T06:05:02Z",
   "pipeline": {
-    "runs_logged": 16,
-    "runs_completed": 16,
+    "runs_logged": 17,
+    "runs_completed": 17,
     "runs_skipped": 0,
     "runs_failed": 0,
     "clean_run_rate": 1.0
   },
   "output": {
-    "research_posts": 6,
+    "research_posts": 7,
     "rejected_posts": 1,
-    "finished_posts": 7,
+    "finished_posts": 8,
     "finished_posts_by_day": {
       "2026-10-11": 1,
       "2026-10-13": 2,
       "2026-10-14": 1,
-      "2026-10-15": 3
+      "2026-10-15": 4
     },
     "cycle_reviews": 2,
-    "words_published": 18254,
+    "words_published": 20852,
     "posts_per_tag": {
+      "evaluation": 3,
       "alignment": 2,
-      "evaluation": 2,
       "interpretability": 2,
       "post-training": 2,
       "agent-safety": 1,
       "agents": 1,
       "architectures": 1,
+      "benchmarks": 1,
       "cybersecurity": 1,
       "distillation": 1,
       "knowledge-transfer": 1,
+      "llm-as-judge": 1,
       "long-context": 1,
       "mechanistic": 1,
       "mixture-of-experts": 1,
@@ -43,17 +45,17 @@
   "qa": {
     "verdicts": {
       "pass": 0,
-      "pass-with-notes": 6,
+      "pass-with-notes": 7,
       "revise": 2,
       "reject": 1
     },
-    "revision_rate": 0.2857,
-    "rejection_rate": 0.1429,
-    "pass_rate": 0.8571,
-    "claims_checked": 309,
+    "revision_rate": 0.25,
+    "rejection_rate": 0.125,
+    "pass_rate": 0.875,
+    "claims_checked": 368,
     "claims_by_status": {
-      "verified": 261,
-      "caveat": 45,
+      "verified": 315,
+      "caveat": 50,
       "unverified": 1,
       "contradicted": 2,
       "outdated": 0
@@ -61,33 +63,33 @@
     "flags_by_type": {
       "note": 5,
       "important": 1,
-      "warning": 5,
+      "warning": 6,
       "caution": 3,
-      "tip": 4
+      "tip": 5
     },
-    "flags_per_1000_words": 1.13
+    "flags_per_1000_words": 1.08
   },
   "sources": {
-    "sources_checked": 96,
-    "unique_domains": 22,
+    "sources_checked": 124,
+    "unique_domains": 28,
     "grade_mix": {
-      "A": 14,
-      "B": 61,
-      "C": 4,
+      "A": 19,
+      "B": 69,
+      "C": 6,
       "D": 0
     },
-    "ab_share": 0.9494,
-    "sources_per_post_mean": 13.17,
+    "ab_share": 0.9362,
+    "sources_per_post_mean": 13.43,
     "unresolvable_rate_at_qa": 0.0,
     "link_rot_end_of_month": null
   },
   "trends": {
     "qa_flags_by_week": {
       "2026-W42": {
-        "posts": 6,
-        "flags": 18,
-        "words": 15945,
-        "flags_per_1000_words": 1.13
+        "posts": 7,
+        "flags": 20,
+        "words": 18543,
+        "flags_per_1000_words": 1.08
       }
     }
   }
