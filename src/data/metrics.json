@@ -1,32 +1,34 @@
 {
   "version": 1,
-  "generated_at": "2026-10-17T05:49:53Z",
+  "generated_at": "2026-10-17T10:37:54Z",
   "pipeline": {
-    "runs_logged": 22,
-    "runs_completed": 22,
+    "runs_logged": 23,
+    "runs_completed": 23,
     "runs_skipped": 0,
     "runs_failed": 0,
     "clean_run_rate": 1.0
   },
   "output": {
-    "research_posts": 14,
+    "research_posts": 15,
     "rejected_posts": 2,
-    "finished_posts": 16,
+    "finished_posts": 17,
     "finished_posts_by_day": {
       "2026-10-11": 1,
       "2026-10-13": 2,
       "2026-10-14": 1,
       "2026-10-15": 5,
-      "2026-10-16": 7
+      "2026-10-16": 7,
+      "2026-10-17": 1
     },
-    "cycle_reviews": 4,
-    "words_published": 41790,
+    "cycle_reviews": 5,
+    "words_published": 45527,
     "posts_per_tag": {
       "evaluation": 6,
       "alignment": 3,
       "llm-as-judge": 3,
       "agent-safety": 2,
       "agents": 2,
+      "benchmarks": 2,
       "diffusion": 2,
       "distillation": 2,
       "interpretability": 2,
@@ -38,9 +40,9 @@
       "architectures": 1,
       "audio": 1,
       "autoformalization": 1,
-      "benchmarks": 1,
       "chain-of-thought": 1,
       "cybersecurity": 1,
+      "forecasting": 1,
       "formal-verification": 1,
       "generalization": 1,
       "generation": 1,
@@ -49,62 +51,64 @@
       "long-context": 1,
       "mechanistic": 1,
       "mixture-of-experts": 1,
+      "open-weights": 1,
       "pruning": 1,
       "reward-hacking": 1,
       "robotics": 1,
       "speech": 1,
       "superposition": 1,
+      "time-series": 1,
       "world-models": 1
     }
   },
   "qa": {
     "verdicts": {
       "pass": 0,
-      "pass-with-notes": 14,
+      "pass-with-notes": 15,
       "revise": 3,
       "reject": 2
     },
-    "revision_rate": 0.1875,
-    "rejection_rate": 0.125,
-    "pass_rate": 0.875,
-    "claims_checked": 740,
+    "revision_rate": 0.1765,
+    "rejection_rate": 0.1176,
+    "pass_rate": 0.8824,
+    "claims_checked": 799,
     "claims_by_status": {
-      "verified": 645,
-      "caveat": 89,
+      "verified": 693,
+      "caveat": 99,
       "unverified": 1,
-      "contradicted": 5,
+      "contradicted": 6,
       "outdated": 0
     },
     "flags_by_type": {
-      "note": 14,
-      "important": 3,
-      "warning": 9,
-      "caution": 9,
-      "tip": 12
+      "note": 15,
+      "important": 4,
+      "warning": 10,
+      "caution": 10,
+      "tip": 13
     },
-    "flags_per_1000_words": 1.27
+    "flags_per_1000_words": 1.31
   },
   "sources": {
-    "sources_checked": 215,
-    "unique_domains": 48,
+    "sources_checked": 234,
+    "unique_domains": 51,
     "grade_mix": {
-      "A": 33,
-      "B": 141,
+      "A": 35,
+      "B": 158,
       "C": 20,
       "D": 3
     },
-    "ab_share": 0.8832,
-    "sources_per_post_mean": 14.07,
+    "ab_share": 0.8935,
+    "sources_per_post_mean": 14.4,
     "unresolvable_rate_at_qa": 0.0,
     "link_rot_end_of_month": null
   },
   "trends": {
     "qa_flags_by_week": {
       "2026-W42": {
-        "posts": 14,
-        "flags": 47,
-        "words": 37097,
-        "flags_per_1000_words": 1.27
+        "posts": 15,
+        "flags": 52,
+        "words": 39697,
+        "flags_per_1000_words": 1.31
       }
     }
   }
