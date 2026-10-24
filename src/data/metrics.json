@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generated_at": "2026-10-24T05:30:36Z",
+  "generated_at": "2026-10-24T10:38:42Z",
   "pipeline": {
-    "runs_logged": 41,
-    "runs_completed": 40,
+    "runs_logged": 42,
+    "runs_completed": 41,
     "runs_skipped": 0,
     "runs_failed": 1,
-    "clean_run_rate": 0.9756
+    "clean_run_rate": 0.9762
   },
   "output": {
     "research_posts": 39,
-    "rejected_posts": 3,
-    "finished_posts": 42,
+    "rejected_posts": 4,
+    "finished_posts": 43,
     "finished_posts_by_day": {
       "2026-10-11": 1,
       "2026-10-13": 2,
@@ -23,7 +23,8 @@
       "2026-10-19": 1,
       "2026-10-21": 1,
       "2026-10-22": 4,
-      "2026-10-23": 7
+      "2026-10-23": 7,
+      "2026-10-24": 1
     },
     "cycle_reviews": 13,
     "words_published": 116995,
@@ -90,11 +91,11 @@
       "pass": 0,
       "pass-with-notes": 39,
       "revise": 3,
-      "reject": 3
+      "reject": 4
     },
-    "revision_rate": 0.0714,
-    "rejection_rate": 0.0714,
-    "pass_rate": 0.9286,
+    "revision_rate": 0.0698,
+    "rejection_rate": 0.093,
+    "pass_rate": 0.907,
     "claims_checked": 2002,
     "claims_by_status": {
       "verified": 1741,
@@ -113,8 +114,8 @@
     "flags_per_1000_words": 1.32
   },
   "sources": {
-    "sources_checked": 564,
-    "unique_domains": 90,
+    "sources_checked": 579,
+    "unique_domains": 91,
     "grade_mix": {
       "A": 79,
       "B": 431,
