@@ -7,7 +7,8 @@
 // - Moves the GFM footnotes (the QA claim notes) under the "QA notes" heading and tags
 //   each note and its reference with its claim status.
 // - Rewrites the engine's relative links between posts and reviews (for example the
-//   manager's `../published/<slug>.md`) to site URLs.
+//   manager's `../published/<slug>.md`, or `../rejected/<slug>.md` for a post QA
+//   rejected) to site URLs.
 // - Wraps tables so wide ones scroll instead of breaking the measure.
 // - On a post QA rejected (`status: rejected`), highlights each claim whose QA note is
 //   Contradicted, Unverified or Outdated (the text between the previous QA note marker
@@ -183,13 +184,15 @@ function placeFootnotes(tree) {
 const POST_FILE_RE = /^(\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*)(?:\.md)?\/?$/;
 const CYCLE_FILE_RE = /^cycle-(\d{2,})(?:\.md)?\/?$/;
 
-/** Map an engine-relative link such as ../published/<slug>.md to its page on this site. */
+/** Map an engine-relative link such as ../published/<slug>.md or ../rejected/<slug>.md to its page on this site. */
 function siteHref(href, base) {
   if (!href || /^(?:[a-z][a-z0-9+.-]*:|#|\/)/i.test(href)) return null;
   const [path, hash = ''] = href.split('#');
   const last = path.replace(/\/$/, '').split('/').pop();
   const anchor = hash ? `#${hash}` : '';
   let m = POST_FILE_RE.exec(last);
+  // A post QA rejected lives in the site's Rejected section, not with the verified posts.
+  if (m && /(?:^|\/)rejected\//.test(path)) return `${base}/rejected/${m[1]}/${anchor}`;
   if (m && (path.endsWith('.md') || /(?:^|\/)(?:published|posts)\//.test(path))) return `${base}/posts/${m[1]}/${anchor}`;
   m = CYCLE_FILE_RE.exec(last);
   if (m && (path.endsWith('.md') || /(?:^|\/)(?:reviews|cycles)\//.test(path))) return `${base}/cycles/${Number(m[1])}/${anchor}`;
