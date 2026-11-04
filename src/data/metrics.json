@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generated_at": "2026-11-03T12:41:51Z",
+  "generated_at": "2026-11-04T00:55:00Z",
   "pipeline": {
-    "runs_logged": 56,
-    "runs_completed": 54,
+    "runs_logged": 57,
+    "runs_completed": 55,
     "runs_skipped": 0,
     "runs_failed": 2,
-    "clean_run_rate": 0.9643
+    "clean_run_rate": 0.9649
   },
   "output": {
-    "research_posts": 58,
+    "research_posts": 60,
     "rejected_posts": 5,
-    "finished_posts": 63,
+    "finished_posts": 65,
     "finished_posts_by_day": {
       "2026-10-11": 1,
       "2026-10-13": 2,
@@ -30,25 +30,25 @@
       "2026-10-31": 3,
       "2026-11-01": 4,
       "2026-11-02": 3,
-      "2026-11-03": 1
+      "2026-11-03": 3
     },
     "cycle_reviews": 19,
-    "words_published": 172952,
+    "words_published": 178140,
     "posts_per_tag": {
       "evaluation": 19,
       "benchmarks": 17,
       "agents": 12,
+      "open-weights": 12,
       "llm-as-judge": 11,
-      "open-weights": 11,
-      "architectures": 8,
+      "architectures": 9,
       "mixture-of-experts": 8,
       "post-training": 8,
-      "long-context": 6,
+      "long-context": 7,
       "agent-safety": 5,
       "alignment": 5,
+      "interpretability": 5,
       "diffusion": 4,
       "infrastructure": 4,
-      "interpretability": 4,
       "kv-cache": 4,
       "reasoning": 4,
       "reward-hacking": 4,
@@ -58,6 +58,8 @@
       "distillation": 3,
       "efficiency": 3,
       "generation": 3,
+      "mechanistic": 3,
+      "multilingual": 3,
       "multimodal": 3,
       "speech": 3,
       "ai-for-mathematics": 2,
@@ -68,13 +70,12 @@
       "formal-verification": 2,
       "harness-engineering": 2,
       "inference": 2,
-      "mechanistic": 2,
       "monitoring": 2,
-      "multilingual": 2,
       "rlvr": 2,
       "speculative-decoding": 2,
       "tokenization": 2,
       "training-stability": 2,
+      "circuit-discovery": 1,
       "compute": 1,
       "contamination": 1,
       "cybersecurity": 1,
@@ -105,41 +106,41 @@
   "qa": {
     "verdicts": {
       "pass": 0,
-      "pass-with-notes": 58,
+      "pass-with-notes": 60,
       "revise": 3,
       "reject": 5
     },
-    "revision_rate": 0.0476,
-    "rejection_rate": 0.0794,
-    "pass_rate": 0.9206,
-    "claims_checked": 2925,
+    "revision_rate": 0.0462,
+    "rejection_rate": 0.0769,
+    "pass_rate": 0.9231,
+    "claims_checked": 3023,
     "claims_by_status": {
-      "verified": 2531,
-      "caveat": 365,
+      "verified": 2619,
+      "caveat": 375,
       "unverified": 4,
       "contradicted": 24,
       "outdated": 1
     },
     "flags_by_type": {
-      "note": 61,
-      "important": 12,
-      "warning": 41,
+      "note": 64,
+      "important": 13,
+      "warning": 42,
       "caution": 29,
-      "tip": 56
+      "tip": 58
     },
     "flags_per_1000_words": 1.32
   },
   "sources": {
-    "sources_checked": 831,
-    "unique_domains": 106,
+    "sources_checked": 860,
+    "unique_domains": 108,
     "grade_mix": {
-      "A": 129,
-      "B": 634,
-      "C": 49,
-      "D": 13
+      "A": 133,
+      "B": 657,
+      "C": 50,
+      "D": 15
     },
-    "ab_share": 0.9248,
-    "sources_per_post_mean": 14.22,
+    "ab_share": 0.924,
+    "sources_per_post_mean": 14.25,
     "unresolvable_rate_at_qa": 0.0,
     "link_rot_end_of_month": null
   },
@@ -164,10 +165,10 @@
         "flags_per_1000_words": 1.16
       },
       "2026-W45": {
-        "posts": 4,
-        "flags": 15,
-        "words": 10369,
-        "flags_per_1000_words": 1.45
+        "posts": 6,
+        "flags": 22,
+        "words": 15557,
+        "flags_per_1000_words": 1.41
       }
     }
   }
