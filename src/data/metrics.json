@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generated_at": "2026-11-05T12:16:40Z",
+  "generated_at": "2026-11-06T00:35:46Z",
   "pipeline": {
-    "runs_logged": 60,
-    "runs_completed": 58,
+    "runs_logged": 61,
+    "runs_completed": 59,
     "runs_skipped": 0,
     "runs_failed": 2,
-    "clean_run_rate": 0.9667
+    "clean_run_rate": 0.9672
   },
   "output": {
-    "research_posts": 63,
+    "research_posts": 64,
     "rejected_posts": 5,
-    "finished_posts": 68,
+    "finished_posts": 69,
     "finished_posts_by_day": {
       "2026-10-11": 1,
       "2026-10-13": 2,
@@ -31,15 +31,16 @@
       "2026-11-01": 4,
       "2026-11-02": 3,
       "2026-11-03": 3,
-      "2026-11-04": 3
+      "2026-11-04": 3,
+      "2026-11-05": 1
     },
     "cycle_reviews": 21,
-    "words_published": 188186,
+    "words_published": 190763,
     "posts_per_tag": {
-      "evaluation": 20,
-      "benchmarks": 18,
+      "evaluation": 21,
+      "benchmarks": 19,
       "agents": 13,
-      "llm-as-judge": 12,
+      "llm-as-judge": 13,
       "open-weights": 12,
       "architectures": 9,
       "mixture-of-experts": 9,
@@ -48,6 +49,7 @@
       "alignment": 6,
       "agent-safety": 5,
       "interpretability": 5,
+      "ai-rd-automation": 4,
       "diffusion": 4,
       "infrastructure": 4,
       "kv-cache": 4,
@@ -55,7 +57,6 @@
       "reward-hacking": 4,
       "scaling-laws": 4,
       "ai-governance": 3,
-      "ai-rd-automation": 3,
       "audio": 3,
       "chain-of-thought": 3,
       "distillation": 3,
@@ -107,41 +108,41 @@
   "qa": {
     "verdicts": {
       "pass": 0,
-      "pass-with-notes": 63,
+      "pass-with-notes": 64,
       "revise": 3,
       "reject": 5
     },
-    "revision_rate": 0.0441,
-    "rejection_rate": 0.0735,
-    "pass_rate": 0.9265,
-    "claims_checked": 3161,
+    "revision_rate": 0.0435,
+    "rejection_rate": 0.0725,
+    "pass_rate": 0.9275,
+    "claims_checked": 3205,
     "claims_by_status": {
-      "verified": 2735,
-      "caveat": 395,
+      "verified": 2778,
+      "caveat": 396,
       "unverified": 4,
       "contradicted": 26,
       "outdated": 1
     },
     "flags_by_type": {
-      "note": 65,
+      "note": 66,
       "important": 13,
-      "warning": 44,
+      "warning": 45,
       "caution": 31,
-      "tip": 61
+      "tip": 62
     },
     "flags_per_1000_words": 1.3
   },
   "sources": {
-    "sources_checked": 889,
+    "sources_checked": 900,
     "unique_domains": 111,
     "grade_mix": {
-      "A": 140,
-      "B": 682,
+      "A": 141,
+      "B": 692,
       "C": 54,
       "D": 16
     },
-    "ab_share": 0.9215,
-    "sources_per_post_mean": 14.16,
+    "ab_share": 0.9225,
+    "sources_per_post_mean": 14.11,
     "unresolvable_rate_at_qa": 0.0,
     "link_rot_end_of_month": null
   },
@@ -166,10 +167,10 @@
         "flags_per_1000_words": 1.16
       },
       "2026-W45": {
-        "posts": 9,
-        "flags": 30,
-        "words": 23176,
-        "flags_per_1000_words": 1.29
+        "posts": 10,
+        "flags": 33,
+        "words": 25753,
+        "flags_per_1000_words": 1.28
       }
     }
   }
