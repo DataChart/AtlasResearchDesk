@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generated_at": "2026-11-06T00:35:46Z",
+  "generated_at": "2026-11-06T12:58:55Z",
   "pipeline": {
-    "runs_logged": 61,
-    "runs_completed": 59,
+    "runs_logged": 62,
+    "runs_completed": 60,
     "runs_skipped": 0,
     "runs_failed": 2,
-    "clean_run_rate": 0.9672
+    "clean_run_rate": 0.9677
   },
   "output": {
-    "research_posts": 64,
+    "research_posts": 66,
     "rejected_posts": 5,
-    "finished_posts": 69,
+    "finished_posts": 71,
     "finished_posts_by_day": {
       "2026-10-11": 1,
       "2026-10-13": 2,
@@ -32,10 +32,11 @@
       "2026-11-02": 3,
       "2026-11-03": 3,
       "2026-11-04": 3,
-      "2026-11-05": 1
+      "2026-11-05": 1,
+      "2026-11-06": 2
     },
     "cycle_reviews": 21,
-    "words_published": 190763,
+    "words_published": 195968,
     "posts_per_tag": {
       "evaluation": 21,
       "benchmarks": 19,
@@ -44,14 +45,15 @@
       "open-weights": 12,
       "architectures": 9,
       "mixture-of-experts": 9,
-      "post-training": 8,
+      "post-training": 9,
+      "alignment": 7,
       "long-context": 7,
-      "alignment": 6,
       "agent-safety": 5,
+      "infrastructure": 5,
       "interpretability": 5,
       "ai-rd-automation": 4,
       "diffusion": 4,
-      "infrastructure": 4,
+      "efficiency": 4,
       "kv-cache": 4,
       "reasoning": 4,
       "reward-hacking": 4,
@@ -60,8 +62,8 @@
       "audio": 3,
       "chain-of-thought": 3,
       "distillation": 3,
-      "efficiency": 3,
       "generation": 3,
+      "inference": 3,
       "mechanistic": 3,
       "monitoring": 3,
       "multilingual": 3,
@@ -73,8 +75,8 @@
       "forecasting": 2,
       "formal-verification": 2,
       "harness-engineering": 2,
-      "inference": 2,
       "optimization": 2,
+      "quantization": 2,
       "rlvr": 2,
       "speculative-decoding": 2,
       "tokenization": 2,
@@ -85,6 +87,7 @@
       "generalization": 1,
       "hallucination": 1,
       "incident-reporting": 1,
+      "jailbreaks": 1,
       "knowledge-editing": 1,
       "knowledge-transfer": 1,
       "learning-rate-schedules": 1,
@@ -94,7 +97,6 @@
       "pretraining": 1,
       "prompt-injection": 1,
       "pruning": 1,
-      "quantization": 1,
       "reinforcement-learning": 1,
       "robotics": 1,
       "safety-cases": 1,
@@ -102,47 +104,48 @@
       "steering": 1,
       "superposition": 1,
       "time-series": 1,
+      "training-variance": 1,
       "world-models": 1
     }
   },
   "qa": {
     "verdicts": {
       "pass": 0,
-      "pass-with-notes": 64,
+      "pass-with-notes": 66,
       "revise": 3,
       "reject": 5
     },
-    "revision_rate": 0.0435,
-    "rejection_rate": 0.0725,
-    "pass_rate": 0.9275,
-    "claims_checked": 3205,
+    "revision_rate": 0.0423,
+    "rejection_rate": 0.0704,
+    "pass_rate": 0.9296,
+    "claims_checked": 3293,
     "claims_by_status": {
-      "verified": 2778,
-      "caveat": 396,
+      "verified": 2856,
+      "caveat": 405,
       "unverified": 4,
-      "contradicted": 26,
+      "contradicted": 27,
       "outdated": 1
     },
     "flags_by_type": {
-      "note": 66,
+      "note": 67,
       "important": 13,
-      "warning": 45,
-      "caution": 31,
-      "tip": 62
+      "warning": 46,
+      "caution": 32,
+      "tip": 64
     },
-    "flags_per_1000_words": 1.3
+    "flags_per_1000_words": 1.29
   },
   "sources": {
-    "sources_checked": 900,
-    "unique_domains": 111,
+    "sources_checked": 924,
+    "unique_domains": 113,
     "grade_mix": {
-      "A": 141,
-      "B": 692,
+      "A": 148,
+      "B": 709,
       "C": 54,
       "D": 16
     },
-    "ab_share": 0.9225,
-    "sources_per_post_mean": 14.11,
+    "ab_share": 0.9245,
+    "sources_per_post_mean": 14.05,
     "unresolvable_rate_at_qa": 0.0,
     "link_rot_end_of_month": null
   },
@@ -167,10 +170,10 @@
         "flags_per_1000_words": 1.16
       },
       "2026-W45": {
-        "posts": 10,
-        "flags": 33,
-        "words": 25753,
-        "flags_per_1000_words": 1.28
+        "posts": 12,
+        "flags": 38,
+        "words": 30958,
+        "flags_per_1000_words": 1.23
       }
     }
   }
