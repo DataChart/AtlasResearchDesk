@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-07T00:10:20Z",
+  "generated_at": "2026-11-07T00:37:44Z",
   "pipeline": {
     "runs_logged": 63,
     "runs_completed": 61,
@@ -9,9 +9,9 @@
     "clean_run_rate": 0.9683
   },
   "output": {
-    "research_posts": 66,
+    "research_posts": 67,
     "rejected_posts": 5,
-    "finished_posts": 71,
+    "finished_posts": 72,
     "finished_posts_by_day": {
       "2026-10-11": 1,
       "2026-10-13": 2,
@@ -33,18 +33,18 @@
       "2026-11-03": 3,
       "2026-11-04": 3,
       "2026-11-05": 1,
-      "2026-11-06": 2
+      "2026-11-06": 3
     },
     "cycle_reviews": 22,
-    "words_published": 197260,
+    "words_published": 199857,
     "posts_per_tag": {
-      "evaluation": 21,
-      "benchmarks": 19,
+      "evaluation": 22,
+      "benchmarks": 20,
       "agents": 13,
       "llm-as-judge": 13,
-      "open-weights": 12,
+      "open-weights": 13,
+      "mixture-of-experts": 10,
       "architectures": 9,
-      "mixture-of-experts": 9,
       "post-training": 9,
       "alignment": 7,
       "long-context": 7,
@@ -111,41 +111,41 @@
   "qa": {
     "verdicts": {
       "pass": 0,
-      "pass-with-notes": 66,
+      "pass-with-notes": 67,
       "revise": 3,
       "reject": 5
     },
-    "revision_rate": 0.0423,
-    "rejection_rate": 0.0704,
-    "pass_rate": 0.9296,
-    "claims_checked": 3293,
+    "revision_rate": 0.0417,
+    "rejection_rate": 0.0694,
+    "pass_rate": 0.9306,
+    "claims_checked": 3344,
     "claims_by_status": {
-      "verified": 2856,
-      "caveat": 405,
+      "verified": 2903,
+      "caveat": 409,
       "unverified": 4,
       "contradicted": 27,
       "outdated": 1
     },
     "flags_by_type": {
-      "note": 67,
+      "note": 68,
       "important": 13,
       "warning": 46,
       "caution": 32,
-      "tip": 64
+      "tip": 65
     },
-    "flags_per_1000_words": 1.29
+    "flags_per_1000_words": 1.28
   },
   "sources": {
-    "sources_checked": 924,
-    "unique_domains": 113,
+    "sources_checked": 943,
+    "unique_domains": 117,
     "grade_mix": {
-      "A": 148,
-      "B": 709,
-      "C": 54,
+      "A": 149,
+      "B": 726,
+      "C": 55,
       "D": 16
     },
-    "ab_share": 0.9245,
-    "sources_per_post_mean": 14.05,
+    "ab_share": 0.9249,
+    "sources_per_post_mean": 14.12,
     "unresolvable_rate_at_qa": 0.0,
     "link_rot_end_of_month": null
   },
@@ -170,10 +170,10 @@
         "flags_per_1000_words": 1.16
       },
       "2026-W45": {
-        "posts": 12,
-        "flags": 38,
-        "words": 30958,
-        "flags_per_1000_words": 1.23
+        "posts": 13,
+        "flags": 40,
+        "words": 33555,
+        "flags_per_1000_words": 1.19
       }
     }
   }
