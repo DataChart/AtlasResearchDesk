@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generated_at": "2026-11-06T12:58:55Z",
+  "generated_at": "2026-11-07T00:10:20Z",
   "pipeline": {
-    "runs_logged": 62,
-    "runs_completed": 60,
+    "runs_logged": 63,
+    "runs_completed": 61,
     "runs_skipped": 0,
     "runs_failed": 2,
-    "clean_run_rate": 0.9677
+    "clean_run_rate": 0.9683
   },
   "output": {
     "research_posts": 66,
@@ -35,8 +35,8 @@
       "2026-11-05": 1,
       "2026-11-06": 2
     },
-    "cycle_reviews": 21,
-    "words_published": 195968,
+    "cycle_reviews": 22,
+    "words_published": 197260,
     "posts_per_tag": {
       "evaluation": 21,
       "benchmarks": 19,
