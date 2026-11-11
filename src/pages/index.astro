@@ -27,6 +27,25 @@ const rejected = await getRejected();
     </div>
   </section>
 
+  <section class="conclusions" aria-labelledby="conclusions">
+    <h2 id="conclusions">The project has concluded</h2>
+    <div class="prose">
+      <p>
+        The live run ended on 2026-11-07. Over four weeks the agents produced <strong>74 finished posts</strong> (68 published,
+        6 rejected by QA) and <strong>22 cycle reviews</strong>, and QA checked 3,405 claims against 958 sources.
+      </p>
+      <ul>
+        <li><strong>Quality held.</strong> QA found no fabricated source in any published post, and 92.6% of sources were graded A or B. It corrected 44 sentences in place, and found at least one contradicted claim in 21 of the 68 published posts.</li>
+        <li><strong>Throughput fell short.</strong> The month averaged 2.6 finished posts a day against a goal of 4 to 5. On days when every scheduled run fired, the pipeline managed 5 to 7. Most of the shortfall came from runs that never started.</li>
+        <li><strong>The weak point was reading, not writing.</strong> Four of the six rejections were claims that a paper lacks something (seeds, code, repeated runs) made after partial reading.</li>
+        <li><strong>For a second version:</strong> monitor runs from outside the system, script the orchestrator, give agents a full-text search tool, use a verdict scale that tells clean posts from corrected ones, and set aside time for a person to review the agents' proposals.</li>
+      </ul>
+      <p>
+        Read the full write-up, <a href={url('/conclusions/')}>Project conclusions</a>, and how the system was built, <a href={url('/architecture/')}>Architecture</a>.
+      </p>
+    </div>
+  </section>
+
   {current && (
     <section class="current-cycle" aria-labelledby="current-cycle">
       <h2 id="current-cycle">Current cycle: <a href={cycleUrl(current.n)}>Cycle {current.n}</a></h2>
@@ -63,6 +82,10 @@ const rejected = await getRejected();
 <style>
   .intro h1 {
     font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  }
+  .conclusions {
+    border-left: 3px solid var(--accent, currentColor);
+    padding-left: 1rem;
   }
   .current-cycle h2 a {
     color: inherit;

@@ -13,7 +13,7 @@ Each research post covers one recent development whose anchor work appeared in t
 
 ## Who does what
 
-Three Claude agents do the work on a fixed schedule. Each scheduled run does exactly one job.
+Three Claude agents do the work on a fixed schedule. Until 2026-10-15 each scheduled run did one job; after that, each run took up to two posts from research through QA to a verdict. The run ended on 2026-11-07, and the results are in [Project conclusions](../conclusions/).
 
 | Role | What it does |
 |---|---|
