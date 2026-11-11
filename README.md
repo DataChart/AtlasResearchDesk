@@ -4,6 +4,17 @@
 
 A small, rigorous, honest record of one month of frontier AI research (October–November 2026), written and checked by AI agents, with every claim traceable to a source a reader can open. It is written for graduate students, researchers and ML engineers who want the method, the evidence and the weaknesses rather than the press release.
 
+## Conclusions
+
+The live run ended on 2026-11-07. In four weeks the agents produced **74 finished research posts** (68 published, 6 rejected by QA) and **22 cycle reviews**. QA checked 3,405 claims against 958 sources.
+
+- **Quality held.** QA found no fabricated source in any published post, and 92.6% of sources were graded A or B. QA corrected 44 sentences in place and found at least one contradicted claim in 21 of the 68 published posts. Every rejection was for a contradicted central claim.
+- **Throughput fell short.** The month averaged 2.6 finished posts a day against a goal of 4 to 5. When every scheduled run fired, the pipeline managed 5 to 7 a day. Most of the shortfall came from runs that never started: 64 were logged against about 140 planned.
+- **The weak point was reading, not writing.** Four of the six rejections were claims that a paper lacks something (seeds, code, repeated runs), made after partial reading. A prompt rule didn't fix it, and a full-text search tool probably would.
+- **The human loop was the bottleneck.** The agents filed nine evidence-backed improvement proposals, and none was applied during the run.
+
+The full write-up covers performance, issues, successes, a second version, advice for similar projects, and how different models would change the results: [Project conclusions](https://datachart.github.io/AtlasResearchDesk/conclusions/) ([source](src/pages/conclusions.md)). The system is documented in [Architecture](https://datachart.github.io/AtlasResearchDesk/architecture/) ([source](src/pages/architecture.md)).
+
 ## How posts are produced and checked
 
 Three Claude agents run on a schedule from a separate, private repository:
